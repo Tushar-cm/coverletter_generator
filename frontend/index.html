@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cover Letter Generator - Professional Cover Letters in Seconds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-badge">🚀 AI-Powered</div>
+                <h1>AI Cover Letter Generator</h1>
+                <p>Create professional cover letters in seconds with AI assistance</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Panel: Form -->
+            <section class="form-section">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2>Your Information</h2>
+                        <span class="form-subtitle">Fill in your details to get started</span>
+                    </div>
+                    
+                    <form id="coverLetterForm">
+                        <!-- Candidate Name -->
+                        <div class="form-group">
+                            <label for="candidateName">
+                                <span class="label-text">Full Name</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input 
+                                    type="text" 
+                                    id="candidateName" 
+                                    name="candidateName" 
+                                    placeholder="John Smith"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Company Name -->
+                        <div class="form-group">
+                            <label for="company">
+                                <span class="label-text">Company Name</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🏢</span>
+                                <input 
+                                    type="text" 
+                                    id="company" 
+                                    name="company" 
+                                    placeholder="Google"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Job Role -->
+                        <div class="form-group">
+                            <label for="jobRole">
+                                <span class="label-text">Job Role</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">💼</span>
+                                <input 
+                                    type="text" 
+                                    id="jobRole" 
+                                    name="jobRole" 
+                                    placeholder="Senior Software Engineer"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Key Skills -->
+                        <div class="form-group">
+                            <label for="skills">
+                                <span class="label-text">Key Skills</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper textarea">
+                                <span class="input-icon">⚡</span>
+                                <textarea 
+                                    id="skills" 
+                                    name="skills" 
+                                    rows="3"
+                                    placeholder="Python, React, Machine Learning..."
+                                    required
+                                ></textarea>
+                            </div>
+                            <small class="helper-text">Separate skills with commas for better results</small>
+                        </div>
+
+                        <!-- PDF Resume Upload -->
+                        <div class="form-group">
+                            <label for="resumeFile">
+                                <span class="label-text">Resume (PDF)</span>
+                                <span class="optional">(Optional)</span>
+                            </label>
+                            <div class="file-upload">
+                                <input 
+                                    type="file" 
+                                    id="resumeFile" 
+                                    name="resumeFile" 
+                                    accept=".pdf"
+                                >
+                                <label for="resumeFile" class="file-label">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-text">Click to upload or drag and drop</span>
+                                    <span class="file-size">PDF up to 5MB</span>
+                                </label>
+                            </div>
+                            <p class="file-name" id="fileName"></p>
+                        </div>
+
+                        <!-- AI Mode Selection -->
+                        <div class="form-group">
+                            <label>
+                                <span class="label-text">AI Mode</span>
+                            </label>
+                            <div class="ai-mode-group">
+                                <label class="mode-card">
+                                    <input type="radio" name="aiMode" value="mock" checked>
+                                    <div class="mode-content">
+                                        <span class="mode-emoji">🎭</span>
+                                        <div class="mode-text">
+                                            <span class="mode-title">Mock AI</span>
+                                            <span class="mode-desc">Instant results</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="mode-card">
+                                    <input type="radio" name="aiMode" value="real">
+                                    <div class="mode-content">
+                                        <span class="mode-emoji">🤖</span>
+                                        <div class="mode-text">
+                                            <span class="mode-title">Real AI</span>
+                                            <span class="mode-desc">2-5 seconds</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-generate" id="generateBtn">
+                            <span class="btn-icon">✨</span>
+                            <span class="btn-text">Generate Cover Letter</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Right Panel: Output -->
+            <section class="output-section">
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state hidden">
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <h3>Generating your cover letter...</h3>
+                        <p>This usually takes 2-5 seconds</p>
+                    </div>
+                </div>
+
+                <!-- Output Card -->
+                <div id="outputCard" class="output-card hidden">
+                    <div class="output-header">
+                        <h2>Your Cover Letter</h2>
+                        <button id="copyBtn" class="btn btn-icon-secondary" title="Copy to clipboard">
+                            <span class="icon">📋</span>
+                        </button>
+                    </div>
+
+                    <div class="output-content">
+                        <div id="coverLetterOutput" class="letter-content"></div>
+                    </div>
+
+                    <div class="output-footer">
+                        <button id="downloadBtn" class="btn btn-secondary">
+                            <span class="btn-icon">⬇️</span>
+                            <span class="btn-text">Download</span>
+                        </button>
+                        <button id="regenerateBtn" class="btn btn-secondary">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Regenerate</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <h3>Ready to create your cover letter?</h3>
+                    <p>Fill out the form on the left and click generate</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="errorState" class="error-state hidden">
+                    <div class="error-container">
+                        <div class="error-icon">❌</div>
+                        <h3>Something went wrong</h3>
+                        <p id="errorMessage"></p>
+                        <button id="errorCloseBtn" class="btn btn-secondary">Dismiss</button>
+                    </div>
+                </div>
+
+                <!-- API Status -->
+                <div id="floatingStatus" class="floating-status"></div>
+            </section>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
